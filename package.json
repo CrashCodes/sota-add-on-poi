@@ -1,0 +1,21 @@
+{
+  "name": "sota-add-on-poi",
+  "version": "1.0.1",
+  "description": "Add-on for video game, Shroud of the Avatar",
+  "main": "index.js",
+  "scripts": {
+    "dev": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "lua",
+    "sota"
+  ],
+  "author": "Ben Mathews",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-changed": "^4.0.2",
+    "gulp-print": "^5.0.2"
+  }
+}

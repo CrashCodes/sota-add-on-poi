@@ -40,6 +40,11 @@ async function clean() {
     return await fsPromises.rmdir('dist', {recursive: true});
 }
 
+async function makeDistDir() {
+    return await fsPromises.mkdir('dist', {recursive: true}); // using recursive:true to keep from failing if already exists.
+}
+
+
 async function zipLua() {
     const zipFilename = process.env.BUILD_NUMBER 
         ? `crashcodes.poi-${package.version}+${process.env.BUILD_NUMBER}.zip`
@@ -65,7 +70,7 @@ async function bashScriptForAzure() {
 }
 
 
-const build = parallel(zipLua, ymlForAzure, bashScriptForAzure);
+const build = series(makeDistDir, parallel(zipLua, ymlForAzure, bashScriptForAzure));
 
 exports.dev = dev;
 exports.build = build;

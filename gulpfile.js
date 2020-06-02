@@ -13,7 +13,9 @@ const sourceBase = 'lua';
 const sourceGlobs = ['lua/**'];
 
 // This will need to change for Mac, Linux, or non-standard directory structure.
-const sotaLuaFolder = path.join(process.env.APPDATA, 'Portalarium\\Shroud of the Avatar\\Lua'); 
+const sotaLuaFolder = (process.platform === "win32" && process.env.APPDATA) 
+    ? path.join(process.env.APPDATA, 'Portalarium\\Shroud of the Avatar\\Lua') 
+    : '';
 
 console.log('sotaLuaFolder=' + sotaLuaFolder);
 
@@ -50,3 +52,11 @@ exports.build = build;
 exports.clean = clean;
 exports.rebuild = series(clean, build);
 exports.default = exports.rebuild;
+
+
+// node_modules/gulp/node_modules/gulp-cli/lib/versioned/^4.0.0/index.js:36:18
+// env.configPath <-- is undefined
+// function execute(opts, env, config)
+// internal/modules/cjs/helpers.js:77:18
+// internal modules can be seen here: https://github.com/nodejs/node/tree/v12.x/lib/internal/modules
+

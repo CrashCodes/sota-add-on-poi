@@ -65,12 +65,12 @@ async function ymlForAzure() {
 // see: https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch#set-variables-in-scripts
 async function bashScriptForAzure() {
     const data = `echo "##vso[task.setvariable variable=version]${package.version}"\n`
-        + `echo "##vso[task.setvariable variable=buildNumber]${process.env.BUILD_NUMBER || ""}"\n`;
+        + `echo "##vso[task.setvariable variable=bn]${process.env.BUILD_NUMBER || ""}"\n`; // using a variable "buildNumber" will fail silently
     return await fsPromises.writeFile('dist/variables.sh', data);
 }
 
 
-const build = series(makeDistDir, parallel(zipLua, ymlForAzure, bashScriptForAzure));
+const build = series(makeDistDir, parallel(zipLua, bashScriptForAzure));
 
 exports.dev = dev;
 exports.build = build;

@@ -25,16 +25,16 @@ steps:
     BUILD_NUMBER: $(Build.BuildNumber)
   displayName: 'npm run build'
 
-- task: CopyFiles@2
-  inputs:
-    sourceFolder: 'dist'
-    contents: '*.zip'
-    targetFolder: $(Build.ArtifactStagingDirectory)
+# - task: CopyFiles@2
+#   inputs:
+#     sourceFolder: 'dist'
+#     contents: '*.zip'
+#     targetFolder: $(Build.ArtifactStagingDirectory)
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathToPublish: $(Build.ArtifactStagingDirectory)
-    artifactName: zip
+# - task: PublishBuildArtifacts@1
+#   inputs:
+#     pathToPublish: $(Build.ArtifactStagingDirectory)
+#     artifactName: zip
 
-# - publish: $(System.DefaultWorkingDirectory)/dist
-#   artifact: dist  
+- publish: $(System.DefaultWorkingDirectory)/dist
+  artifact: dist  

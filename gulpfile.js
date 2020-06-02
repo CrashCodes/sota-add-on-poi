@@ -1,6 +1,6 @@
 
 const path = require('path');
-const { src, dest, watch, series } = require('gulp');
+const { src, dest, watch, series, parallel } = require('gulp');
 const zip = require('gulp-zip');
 const changed = require('gulp-changed');
 const print = require('gulp-print').default;
@@ -40,7 +40,7 @@ async function clean() {
     return await fsPromises.rmdir('dist', {recursive: true});
 }
 
-async function build() {
+async function zipLua() {
     const zipFilename = process.env.BUILD_NUMBER 
         ? `crashcodes.poi-${package.version}+${process.env.BUILD_NUMBER}.zip`
         : `crashcodes.poi-${package.version}.zip`;
@@ -50,6 +50,22 @@ async function build() {
 		.pipe(dest('dist'));
 }
 
+
+// see: https://docs.microsoft.com/en-us/azure/devops/pipelines/process/templates?view=azure-devops
+async function ymlForAzure() {
+    const data = `variables:\n  version: '${package.version}'\n  buildNumber: '${process.env.BUILD_NUMBER || ""}'`;
+    return await fsPromises.writeFile('dist/variables.yml', data);
+}
+
+// see: https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch#set-variables-in-scripts
+async function bashScriptForAzure() {
+    const data = `echo "##vso[task.setvariable variable=version]${package.version}"\n`
+        + `echo "##vso[task.setvariable variable=buildNumber]${process.env.BUILD_NUMBER || ""}"\n`;
+    return await fsPromises.writeFile('dist/variables.sh', data);
+}
+
+
+const build = parallel(zipLua, ymlForAzure, bashScriptForAzure);
 
 exports.dev = dev;
 exports.build = build;

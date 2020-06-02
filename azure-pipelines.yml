@@ -17,7 +17,6 @@ steps:
 
 - script: |
     npm ci
-    ls node_modules
   displayName: 'npm ci'
 
 - script: |
@@ -26,7 +25,8 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    contents: 'dist/*.zip'
+    sourceFolder: 'dist'
+    contents: '*.zip'
     targetFolder: $(Build.ArtifactStagingDirectory)
 
 - task: PublishBuildArtifacts@1

@@ -24,5 +24,15 @@ steps:
     npm run build
   displayName: 'npm run build'
 
-- publish: $(System.DefaultWorkingDirectory)/dist
-  artifact: dist  
+- task: CopyFiles@2
+  inputs:
+    contents: 'dist/*.zip'
+    targetFolder: $(Build.ArtifactStagingDirectory)
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: $(Build.ArtifactStagingDirectory)
+    artifactName: zip
+
+# - publish: $(System.DefaultWorkingDirectory)/dist
+#   artifact: dist  

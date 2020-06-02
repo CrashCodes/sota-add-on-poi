@@ -83,7 +83,6 @@ I had a hard time choosing between [Azure Pipelines](https://azure.microsoft.com
 - fix the coordinate images (I keep messing them up)
 - include the GIMP image files in this repo
 - add screenshots and include in README.md
-- create a simple build
 - automate build with upload to [Releases](https://github.com/CrashCodes/sota-add-on-poi/releases) see https://github.com/coreybutler/nvm-windows/releases
 - research automating the deploy to [shroudmods.com's mod list](https://shroudmods.com/index.php?modlist)
 - add a changelog

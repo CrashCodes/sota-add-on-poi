@@ -41,8 +41,12 @@ async function clean() {
 }
 
 async function build() {
+    const zipFilename = process.env.BUILD_NUMBER 
+        ? `crashcodes.poi-${package.version}+${process.env.BUILD_NUMBER}.zip`
+        : `crashcodes.poi-${package.version}.zip`;
+    
 	return src(sourceGlobs, {base: sourceBase})
-		.pipe(zip('crashcodes.poi-' + package.version + '.zip')) // TODO: add a build number
+		.pipe(zip(zipFilename))
 		.pipe(dest('dist'));
 }
 

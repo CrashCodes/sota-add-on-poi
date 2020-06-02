@@ -21,6 +21,8 @@ steps:
 
 - script: |
     npm run build
+  env:
+    BUILD_NUMBER: $(Build.BuildNumber)
   displayName: 'npm run build'
 
 - task: CopyFiles@2

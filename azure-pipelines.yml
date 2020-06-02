@@ -17,6 +17,7 @@ steps:
 
 - script: |
     npm ci
+    ls node_modules
   displayName: 'npm ci'
 
 - script: |

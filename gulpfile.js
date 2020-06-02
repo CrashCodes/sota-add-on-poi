@@ -63,9 +63,17 @@ async function ymlForAzure() {
 }
 
 // see: https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch#set-variables-in-scripts
+// env variables supplied by azure-pipelines.yml "npm run build" step
 async function bashScriptForAzure() {
-    const data = `echo "##vso[task.setvariable variable=version]${package.version}"\n`
-        + `echo "##vso[task.setvariable variable=bn]${process.env.BUILD_NUMBER || ""}"\n`; // using a variable "buildNumber" will fail silently
+    const data = Object
+        .entries({
+            version: package.version,
+            bn: process.env.BUILD_NUMBER, // using a variable "buildNumber" will fail silently
+            buildId: process.env.BUILD_ID,
+            buildUri: process.env.BUILD_URI,
+        })
+        .map(([key, value]) => `echo "##vso[task.setvariable variable=${key}]${value || ""}"\n`)
+        .join('');
     return await fsPromises.writeFile('dist/variables.sh', data);
 }
 
@@ -85,3 +93,11 @@ exports.default = exports.rebuild;
 // internal/modules/cjs/helpers.js:77:18
 // internal modules can be seen here: https://github.com/nodejs/node/tree/v12.x/lib/internal/modules
 
+
+// maybe something like this to prep for release
+// SRC=$(find dist -type f -iname "*.zip" -print -quit)
+// echo $SRC
+// dist/crashcodes.poi-1.0.1+12341234.12.zip
+// DST=$(echo "$SRC" | sed 's/dist\///g' | sed 's/+.\+/.zip/g')
+// echo $DST
+// mv $SRC $DST

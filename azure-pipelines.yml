@@ -23,6 +23,8 @@ steps:
     npm run build
   env:
     BUILD_NUMBER: $(Build.BuildNumber)
+    BUILD_ID: $(Build.BuildId)
+    BUILD_URI: $(Build.BuildUri)
   displayName: 'npm run build'
 
 # - task: CopyFiles@2

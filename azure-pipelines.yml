@@ -23,3 +23,6 @@ steps:
 - script: |
     npm run build
   displayName: 'npm run build'
+
+- publish: $(System.DefaultWorkingDirectory)/dist
+  artifact: dist  

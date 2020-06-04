@@ -4,18 +4,34 @@ Add-on for [Shroud of the Avatar](https://www.shroudoftheavatar.com/) to manage 
 This add-on is very similar to [SotA-Lua-Waypoints](https://github.com/John-Markus/SotA-Lua-Waypoints) which I wish I would have found earlier!
 
 
+![crashcodes.poi screenshot](screenshots/s-mart.png)
+
 
 ## Installation
 
-clone this repository
+Use [shroudmod's modmanager](https://shroudmods.com/index.php?modmanager).
 
-copy the lua directory from this repository to the Shroud of the Avatar Lua directory
+or
+
+1. [Download](https://github.com/CrashCodes/sota-add-on-poi/releases) the latest zip.
+
+2. Extract the contents into the [Shroud of the Avatar](https://www.shroudoftheavatar.com/)'s Lua directory. (i.e. `%APPDATA%\Portalarium\Shroud of the Avatar\Lua`)
+
+3. type `/lua reload` within  [Shroud of the Avatar](https://www.shroudoftheavatar.com/).
+
+
+On Windows for example, you should end directory that looks something like: 
+```
+%APPDATA%\Portalarium\Shroud of the Avatar\Lua
+<DIR>   crashcodes.poi
+        crashcodes.poi.lua
+```
 
 ### To find the the Shroud of the Avatar Lua directory
-Within the game type `/datafolder` 
-in Windows this will open a File Explorer to the datafold directory which should contain a Lua subfolder.
+Within [Shroud of the Avatar](https://www.shroudoftheavatar.com/) type `/datafolder` 
+in the chat window. In Windows this will open a File Explorer to the datafolder directory which should contain a Lua subfolder.
 
-type `/lua reload` within Shroud of the Avatar
+
 
 ## Usage
 On loading, a list and explanation of commands will appear in the chat window. 
@@ -64,13 +80,16 @@ Clicking on the button next to a poi in the list will make the corresponding poi
 I had a hard time choosing between [Azure Pipelines](https://azure.microsoft.com/en-us/services/devops/pipelines/) and [Travis CI](https://travis-ci.org/). I ended up going with [Azure Pipelines](https://azure.microsoft.com/en-us/services/devops/pipelines/). 
 - [Azure DevOps Project](https://dev.azure.com/crashcodes/sota-add-on-poi)
 
+The build is managed with [azure-pipelines.yml](azure-pipelines.yml), but the release is in the [Azure DevOps Releases](https://dev.azure.com/crashcodes/sota-add-on-poi/_release).
+
+
 ### Useful tools
+- [GIMP](https://www.gimp.org/)
 - [Visual Studio Code](https://code.visualstudio.com/download)
 - [vscode-lua](https://github.com/trixnz/vscode-lua) Visual Studio Code Extension
 - [shroudmods.com](https://shroudmods.com/index.php?apireferences)
 - [Shroud of the Avatar Forums](https://www.shroudoftheavatar.com/forum/index.php?forums/lua-discussions.2284/)
 - [Discord lua-scripting-api](https://discord.com/channels/179618786972925952/643948781410451472)
-- [GIMP](https://www.gimp.org/) 
 
 
 ### Useful in-game slash commands
@@ -80,10 +99,6 @@ I had a hard time choosing between [Azure Pipelines](https://azure.microsoft.com
 
 
 ## TODO
-- fix the coordinate images (I keep messing them up)
-- include the GIMP image files in this repo
-- add screenshots and include in README.md
-- automate build with upload to [Releases](https://github.com/CrashCodes/sota-add-on-poi/releases) see https://github.com/coreybutler/nvm-windows/releases
 - research automating the deploy to [shroudmods.com's mod list](https://shroudmods.com/index.php?modlist)
 - add a changelog
 - linting

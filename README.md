@@ -1,10 +1,10 @@
 # crashcodes.poi
+
+![crashcodes.poi screenshot](screenshots/s-mart.png)
+
 Add-on for [Shroud of the Avatar](https://www.shroudoftheavatar.com/) to manage points of interest.
 
 This add-on is very similar to [SotA-Lua-Waypoints](https://github.com/John-Markus/SotA-Lua-Waypoints) which I wish I would have found earlier!
-
-
-![crashcodes.poi screenshot](screenshots/s-mart.png)
 
 
 ## Installation
